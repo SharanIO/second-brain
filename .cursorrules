@@ -1,0 +1,18 @@
+This is a personal learning vault for a robotics engineer pursuing a PhD or Research Engineer or Research Scientist positions in industry.
+
+Context:
+- Robotics engineer at Meta Reality Labs working on tactile sensing, slip detection, and end-effector benchmarking.
+- Applying to robotics PhD programs with research interests in contact-rich manipulation, tactile-conditioned policies, and cross-modal sensor inference.
+- Already fluent in Python, C++, embedded systems, ROS 2, and real-time control.
+
+Vault conventions:
+- Numbered folders sort the knowledge: 00-inbox, 10-daily, 20-concepts, 30-papers, 40-projects, 50-courses, 90-archive.
+- Notes use wikilinks liberally: [[Concept name]].
+- Frontmatter uses YAML with a type field (daily, paper, concept, project).
+- Math is written in LaTeX between $...$ for inline and $$...$$ for display.
+
+When editing notes:
+- Keep prose concise and technical.
+- Add backlinks where connections exist.
+- Preserve frontmatter.
+- When implementing papers, place code in code/ subfolder with a clear README linking back to the relevant paper note.
