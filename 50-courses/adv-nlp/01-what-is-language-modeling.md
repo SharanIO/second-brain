@@ -133,3 +133,13 @@ Each chapter will introduce one row of this table, explain the key ideas from fi
 - The history of NLP is a series of increasingly powerful solutions to the three core challenges.
 
 **Next**: [[02-n-gram-language-models|Chapter 2 — N-gram Language Models]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — primary source for this chapter's framing and problem setup. See [[adv-nlp-course-notes]].
+- Shannon, C. E. (1948). *A Mathematical Theory of Communication*. Bell System Technical Journal. — foundational work on entropy and the probabilistic view of language.
+- Jurafsky, D. & Martin, J. H. (2023). *Speech and Language Processing* (3rd ed. draft). — standard NLP textbook; Chapter 3 covers language models and perplexity in depth.
+
+> [!todo] cite this — add a citation for the chain rule of probability as used in the language modeling context (standard probability theory; Jurafsky & Martin Ch. 3 is a good reference).

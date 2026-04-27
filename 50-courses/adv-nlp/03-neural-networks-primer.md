@@ -197,3 +197,15 @@ We will deepen this understanding considerably as we study embeddings (Chapter 4
 
 **Previous**: [[02-n-gram-language-models|Chapter 2 — N-gram Language Models]]
 **Next**: [[04-word-embeddings|Chapter 4 — Word Representations and Embeddings]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — source for the MLP forward-pass walkthrough, softmax, and training loop structure. See [[adv-nlp-course-notes]].
+- Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press. — standard reference for Chapters 6–8 (feedforward networks, regularization, optimization).
+- Paszke, A. et al. (2019). PyTorch: An Imperative Style, High-Performance Deep Learning Library. *NeurIPS*. — the PyTorch framework used in all code examples.
+- Rosenblatt, F. (1958). The Perceptron: A probabilistic model for information storage and organization in the brain. *Psychological Review*. — origin of the neuron/perceptron concept.
+- Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. *Nature*. — original backpropagation paper.
+
+> [!todo] cite this — add a canonical reference for the cross-entropy loss as a maximum likelihood objective (Bishop 2006 *PRML* Ch. 4 is standard).

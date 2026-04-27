@@ -30,7 +30,7 @@ Chapter 8 gave us the attention mechanism: a way for each token to selectively g
 5. Encode positional information (attention is order-agnostic)
 6. Stack many layers to build depth (we need a repeatable block structure)
 
-The **Transformer** (Vaswani et al., *"Attention is All You Need"*, 2017) combines all of these into one architecture that has dominated NLP ever since.
+The **Transformer** [Vaswani et al., 2017] combines all of these into one architecture that has dominated NLP ever since.
 
 ---
 
@@ -110,7 +110,7 @@ Different dimensions of $\mathbf{p}_t$ oscillate at different frequencies — hi
 
 ### Modern alternatives: RoPE, ALiBi
 
-More recent models use **Rotary Position Embedding (RoPE)** or **ALiBi**, which encode *relative* positions rather than absolute ones. These generalize much better to long sequences and are standard in Llama, Mistral, and GPT-4-class models.
+More recent models use **Rotary Position Embedding (RoPE)** [Su et al., 2022] or **ALiBi** [Press et al., 2022], which encode *relative* positions rather than absolute ones. These generalize much better to long sequences and are standard in Llama, Mistral, and GPT-4-class models.
 
 > [!todo] cite this — expand RoPE/ALiBi section when relevant papers are added to the vault
 
@@ -147,7 +147,7 @@ Trained with **masked language modeling** (MLM): randomly mask ~15% of input tok
 Best for: classification, named entity recognition, sentence similarity, reading comprehension.
 Cannot generate text autoregressively (no causal mask means it sees the future during training, so it cannot be used to predict unseen next tokens).
 
-Examples: BERT, RoBERTa, ELECTRA, DeBERTa.
+Examples: BERT [Devlin et al., 2019], RoBERTa [Liu et al., 2019], ELECTRA [Clark et al., 2020], DeBERTa [He et al., 2021].
 
 The special `[CLS]` token is prepended to every input; its final representation aggregates information from the whole sequence and is used for classification. The loss is computed only on `[MASK]` positions.
 
@@ -161,7 +161,7 @@ Combines a bidirectional encoder with a causally-masked decoder, connected by **
 The cross-attention uses encoder representations as keys and values; the decoder's current hidden state as the query. This is the bridge between encoder and decoder.
 
 Best for: seq-to-seq tasks — translation, summarization, question answering with a given context.
-Examples: T5, mT5, BART, mBART.
+Examples: T5 [Raffel et al., 2020], mT5 [Xue et al., 2021], BART [Lewis et al., 2020], mBART.
 
 ---
 
@@ -200,3 +200,22 @@ Notice that the shape $[3 \times 512]$ is preserved throughout — every token s
 
 **Previous**: [[08-attention-mechanism|Chapter 8 — The Attention Mechanism]]
 **Next**: [[10-pretraining-objectives|Chapter 10 — Pretraining: Self-Supervised Learning at Scale]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — source for the transformer layer walkthrough, multi-head attention intuition, decoder-only vs. encoder-only distinction, and tensor shape table. See [[adv-nlp-course-notes]].
+- Vaswani, A. et al. (2017). Attention is All You Need. *NeurIPS*. — the original Transformer; introduces multi-head attention, positional encoding, and the encoder-decoder architecture.
+- Devlin, J. et al. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. *NAACL*. — encoder-only transformer; MLM pretraining.
+- Radford, A. et al. (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Blog. — GPT-1; decoder-only transformer.
+- Radford, A. et al. (2019). Language Models are Unsupervised Multitask Learners. OpenAI Blog. — GPT-2.
+- Brown, T. et al. (2020). Language Models are Few-Shot Learners. *NeurIPS*. — GPT-3; few-shot capabilities.
+- Raffel, C. et al. (2020). Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer. *JMLR*, 21. — T5; text-to-text framing.
+- Liu, Y. et al. (2019). RoBERTa: A Robustly Optimized BERT Pretraining Approach. *arXiv:1907.11692*.
+- Clark, K. et al. (2020). ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. *ICLR*.
+- Lewis, M. et al. (2020). BART: Denoising Sequence-to-Sequence Pre-training. *ACL*.
+- Su, J. et al. (2022). RoFormer: Enhanced Transformer with Rotary Position Embedding. *arXiv:2104.09864*.
+- Press, O., Smith, N. A., & Lewis, M. (2022). Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation. *ICLR*. — ALiBi positional encoding.
+- He, P. et al. (2021). DeBERTa: Decoding-enhanced BERT with Disentangled Attention. *ICLR*.
+- Touvron, H. et al. (2023). Llama 2: Open Foundation and Fine-Tuned Chat Models. *arXiv:2307.09288*.

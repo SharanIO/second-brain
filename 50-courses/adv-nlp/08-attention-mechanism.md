@@ -24,7 +24,7 @@ By the end of this chapter you should be able to:
 
 Recall the seq-to-seq bottleneck from Chapter 7: we forced the encoder to compress an entire sentence into a single fixed-size vector. The decoder then tried to reconstruct the full output from this compressed representation — losing information along the way.
 
-The insight that breaks this bottleneck: **instead of asking the encoder to summarize everything upfront, let the decoder look at all encoder hidden states simultaneously and learn which ones to attend to at each decoding step**.
+The insight that breaks this bottleneck: **instead of asking the encoder to summarize everything upfront, let the decoder look at all encoder hidden states simultaneously and learn which ones to attend to at each decoding step** [Bahdanau et al., 2015].
 
 More concretely: when generating the English word "fish" in the translation of "Les chats mangent du poisson", the decoder should attend strongly to the encoder's representation of "poisson" and weakly to "Les" and "chats". The model learns this attention distribution from data — it does not need to be programmed by a human.
 
@@ -54,7 +54,7 @@ where $W_Q, W_K, W_V \in \mathbb{R}^{d_k \times d_{model}}$ are learned projecti
 
 Given a set of Queries $Q \in \mathbb{R}^{T \times d_k}$, Keys $K \in \mathbb{R}^{T \times d_k}$, and Values $V \in \mathbb{R}^{T \times d_v}$ (one row per token), the attention output is:
 
-$$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right) V$$
+$$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right) V \quad \text{[Vaswani et al., 2017]}$$
 
 Let us unpack this step by step.
 
@@ -159,3 +159,15 @@ Cross-attention completely replaces the bottleneck of the original seq-to-seq ar
 
 **Previous**: [[07-recurrent-neural-networks|Chapter 7 — Recurrent Neural Networks]]
 **Next**: [[09-transformers|Chapter 9 — The Transformer Architecture]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — source for the QKV formulation, self-attention parallelism analysis, KV-cache description, and masking. See [[adv-nlp-course-notes]].
+- Bahdanau, D., Cho, K., & Bengio, Y. (2015). Neural Machine Translation by Jointly Learning to Align and Translate. *ICLR*. — the original attention mechanism for seq-to-seq; broke the bottleneck.
+- Vaswani, A. et al. (2017). Attention is All You Need. *NeurIPS*. — introduced scaled dot-product attention and multi-head attention; the Transformer paper.
+- Luong, M.-T., Pham, H., & Manning, C. D. (2015). Effective Approaches to Attention-based Neural Machine Translation. *EMNLP*. — simplified attention variants (dot-product, general, concat).
+- Dao, T. et al. (2022). FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness. *NeurIPS*. — efficient implementation of self-attention critical for long contexts.
+
+> [!todo] cite this — add a reference for the KV-cache as a specific named technique; it is standard practice but was not introduced in a single named paper.

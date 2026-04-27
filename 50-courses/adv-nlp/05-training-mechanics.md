@@ -109,7 +109,7 @@ $$\theta_{t+1} = \theta_t - \eta v_t$$
 
 The velocity $v_t$ is an exponentially weighted average of past gradients. Directions with consistent gradients build up momentum; oscillating directions cancel out. Typical $\beta = 0.9$.
 
-### AdaGrad (Adaptive Gradient)
+### AdaGrad (Adaptive Gradient) [Duchi et al., 2011]
 
 Different parameters need different learning rates. A rare word embedding should get large updates when it appears; a common word's embedding is already well-trained. AdaGrad keeps a per-parameter sum of squared gradients $G$ and scales the learning rate accordingly:
 
@@ -131,7 +131,7 @@ The decay rate $\rho \approx 0.9$ means old gradient information fades away. The
 
 **Remaining problem**: RMSProp scales learning rates per-parameter but does not use directional information — it can still oscillate in curved loss landscapes.
 
-### Adam (Adaptive Moment Estimation)
+### Adam (Adaptive Moment Estimation) [Kingma & Ba, 2015]
 
 Adam is the combination of Momentum and RMSProp. It tracks two quantities:
 
@@ -150,7 +150,7 @@ Typical hyperparameters: $\beta_1 = 0.9$, $\beta_2 = 0.999$, $\eta = 10^{-3}$, $
 
 Adam is the most widely used optimizer. It is robust to learning rate choice and works well across a wide range of architectures and tasks.
 
-### AdamW: the LLM standard
+### AdamW: the LLM standard [Loshchilov & Hutter, 2019]
 
 Standard Adam has a subtle bug with **weight decay** (L2 regularization). Weight decay is supposed to penalize large weights by adding a term $\lambda \|\theta\|^2$ to the loss. In standard Adam, this term enters the gradient and gets processed by the adaptive scaling — which mathematically distorts the regularization effect.
 
@@ -184,7 +184,7 @@ A fixed learning rate is rarely optimal. Common practice:
 
 ### Gradient clipping
 
-If gradients become very large (gradient explosion), the update step can destroy the model. **Gradient clipping** caps the gradient norm at a threshold (typically 1.0) before the update:
+If gradients become very large (gradient explosion), the update step can destroy the model. **Gradient clipping** caps the gradient norm at a threshold (typically 1.0) before the update [Pascanu et al., 2013]:
 
 $$g \leftarrow g \cdot \min\!\left(1,\ \frac{1.0}{\|g\|}\right)$$
 
@@ -201,3 +201,17 @@ $$g \leftarrow g \cdot \min\!\left(1,\ \frac{1.0}{\|g\|}\right)$$
 
 **Previous**: [[04-word-embeddings|Chapter 4 — Word Representations and Embeddings]]
 **Next**: [[06-building-blocks|Chapter 6 — Building Blocks of Modern Neural Networks]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — source for the optimizer progression (AdaGrad → Adam → AdamW → Adafactor), L2 vs. weight decay distinction. See [[adv-nlp-course-notes]].
+- Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. *Nature*, 323. — original backpropagation paper.
+- Duchi, J., Hazan, E., & Singer, Y. (2011). Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. *JMLR*, 12. — AdaGrad.
+- Hinton, G. (2012). *Neural Networks for Machine Learning*, Lecture 6e (Coursera). — RMSProp (unpublished; this lecture is the canonical reference).
+- Kingma, D. P. & Ba, J. (2015). Adam: A Method for Stochastic Optimization. *ICLR*. — Adam optimizer.
+- Loshchilov, I. & Hutter, F. (2019). Decoupled Weight Decay Regularization. *ICLR*. — AdamW; explains why plain Adam handles weight decay incorrectly.
+- Shazeer, N. & Stern, M. (2018). Adafactor: Adaptive Learning Rates with Sublinear Memory Cost. *ICML*. — Adafactor optimizer.
+- Pascanu, R., Mikolov, T., & Bengio, Y. (2013). On the difficulty of training recurrent neural networks. *ICML*. — gradient clipping.
+- Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press, Ch. 8. — optimization for neural networks.

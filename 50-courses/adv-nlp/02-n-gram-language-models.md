@@ -48,7 +48,7 @@ $$P(w_t \mid w_{t-2}, w_{t-1})$$
 In practice, large language models trained before the deep learning era used $n$ up to around 5. Going higher makes the sparsity problem (Section 2.4) worse faster than it improves accuracy.
 
 > [!note] Infini-gram
-> A recent variant called **infini-gram** sidesteps the fixed-$n$ limitation by dynamically choosing the longest matching prefix found in the training corpus. It is essentially a very large suffix array over text.
+> A recent variant called **infini-gram** sidesteps the fixed-$n$ limitation by dynamically choosing the longest matching prefix found in the training corpus. It is essentially a very large suffix array over text [Liu et al., 2024].
 
 ---
 
@@ -87,7 +87,7 @@ The standard fix is **smoothing**: steal a small amount of probability mass from
 **Laplace (add-1) smoothing**: add 1 to every count, including zeros.
 $$P_{\text{smooth}}(w_t \mid w_{t-1}) = \frac{C(w_{t-1}, w_t) + 1}{C(w_{t-1}) + |V|}$$
 
-**Kneser-Ney smoothing** (the practical standard): a more sophisticated method that discounts seen counts and redistributes the mass in a way that respects word frequency patterns. A word like "Francisco" appears frequently, but almost always after "San" — Kneser-Ney can capture this.
+**Kneser-Ney smoothing** (the practical standard): a more sophisticated method that discounts seen counts and redistributes the mass in a way that respects word frequency patterns [Kneser & Ney, 1995; Chen & Goodman, 1999]. A word like "Francisco" appears frequently, but almost always after "San" — Kneser-Ney can capture this.
 
 Smoothing helps, but it is fundamentally a patch on a broken design.
 
@@ -141,3 +141,14 @@ These six limitations are exactly what neural language models are designed to ov
 
 **Previous**: [[01-what-is-language-modeling|Chapter 1 — What is Language Modeling?]]
 **Next**: [[03-neural-networks-primer|Chapter 3 — Neural Networks: A Primer]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — primary source for the n-gram framing, one-hot discussion, and limitations list. See [[adv-nlp-course-notes]].
+- Jurafsky, D. & Martin, J. H. (2023). *Speech and Language Processing* (3rd ed. draft), Ch. 3. — comprehensive n-gram coverage with smoothing details.
+- Kneser, R. & Ney, H. (1995). Improved backing-off for M-gram language modeling. *ICASSP*. — original Kneser-Ney smoothing paper.
+- Chen, S. F. & Goodman, J. (1999). An empirical study of smoothing techniques for language modeling. *Computer Speech & Language*. — benchmark comparison of smoothing methods.
+- Liu, S. et al. (2024). Infini-gram: Scaling Unbounded n-gram Language Models to a Trillion Tokens. *arXiv:2401.17377*. — the infini-gram paper referenced in Section 2.2.
+- Harris, Z. S. (1954). Distributional structure. *Word*, 10(2–3). — foundational paper on the distributional hypothesis (relevant to why one-hot fails).

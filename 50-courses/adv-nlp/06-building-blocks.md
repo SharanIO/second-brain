@@ -41,7 +41,7 @@ $$f(x) = \max(\alpha x, x) \quad (\alpha \ll 1)$$
 
 Leaky ReLU allows a small nonzero slope $\alpha$ (e.g. 0.01) for negative inputs, preventing dead neurons. **PReLU** (Parametric ReLU) makes $\alpha$ a learned parameter rather than a fixed constant.
 
-### GELU (Gaussian Error Linear Unit)
+### GELU (Gaussian Error Linear Unit) [Hendrycks & Gimpel, 2016]
 
 $$f(x) = x \cdot \Phi(x)$$
 
@@ -81,7 +81,7 @@ If the weights $W^{(l)}$ have values that are slightly too large, the activation
 
 The goal of initialization is to keep the **variance of activations approximately constant** across all layers.
 
-### Xavier (Glorot) initialization
+### Xavier (Glorot) initialization [Glorot & Bengio, 2010]
 
 Best for: sigmoid and tanh activations.
 
@@ -89,7 +89,7 @@ $$W \sim \mathcal{N}\!\left(0,\ \frac{2}{n_{in} + n_{out}}\right)$$
 
 Derivation sketch: for a linear layer with $n_{in}$ inputs and $n_{out}$ outputs, if inputs have variance 1 and weights are i.i.d., the output variance scales as $n_{in} \cdot \text{Var}(W)$. Setting $\text{Var}(W) = 2/(n_{in} + n_{out})$ balances variance preservation in both the forward and backward pass.
 
-### Kaiming (He) initialization
+### Kaiming (He) initialization [He et al., 2015]
 
 Best for: ReLU and GELU activations.
 
@@ -115,7 +115,7 @@ for m in model.modules():
 
 Even with good initialization, deep networks with many parameters tend to **overfit** — they memorize the training data rather than learning general patterns. The model performs well on training examples but poorly on new, unseen examples.
 
-**Dropout** is a regularization technique that forces the network to learn more robust features.
+**Dropout** is a regularization technique that forces the network to learn more robust features [Srivastava et al., 2014].
 
 ### Mechanism
 
@@ -150,7 +150,7 @@ model.train() # re-enables dropout for training
 
 As a network trains, the distribution of activations in each layer shifts as the parameters change — a phenomenon called **internal covariate shift**. Later layers must constantly adapt to these distribution changes, slowing training.
 
-**Layer normalization** (LayerNorm) normalizes the activations within each example, independently across examples in the batch:
+**Layer normalization** (LayerNorm) normalizes the activations within each example, independently across examples in the batch [Ba et al., 2016]:
 
 $$\text{LayerNorm}(\mathbf{x}) = \frac{\mathbf{x} - \mu}{\sigma + \epsilon} \cdot \gamma + \beta$$
 
@@ -212,3 +212,18 @@ A few conventions worth noting:
 
 **Previous**: [[05-training-mechanics|Chapter 5 — Training Neural Networks]]
 **Next**: [[07-recurrent-neural-networks|Chapter 7 — Recurrent Neural Networks]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — source for the activation function survey (ReLU, GELU, SiLU), Xavier/Kaiming comparison, dropout mechanics, and the full MLP architecture with PyTorch code. See [[adv-nlp-course-notes]].
+- Nair, V. & Hinton, G. E. (2010). Rectified Linear Units Improve Restricted Boltzmann Machines. *ICML*. — ReLU activation.
+- Hendrycks, D. & Gimpel, K. (2016). Gaussian Error Linear Units (GELUs). *arXiv:1606.08415*. — GELU activation; used in BERT, GPT-2, and most modern transformers.
+- Ramachandran, P., Zoph, B., & Le, Q. V. (2017). Swish: A Self-Gated Activation Function. *arXiv:1710.05941*. — SiLU/Swish activation (used in LLaMA family).
+- Glorot, X. & Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. *AISTATS*. — Xavier initialization.
+- He, K. et al. (2015). Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification. *ICCV*. — Kaiming initialization.
+- Srivastava, N. et al. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. *JMLR*, 15. — dropout regularization.
+- Ba, J. L., Kiros, J. R., & Hinton, G. E. (2016). Layer Normalization. *arXiv:1607.06450*. — LayerNorm; preferred over BatchNorm for variable-length sequences.
+
+> [!todo] cite this — add a reference for the 4× FFN expansion ratio convention (common in transformer literature but no single canonical source; see Vaswani et al. 2017).

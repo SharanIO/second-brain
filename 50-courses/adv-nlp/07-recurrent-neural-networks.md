@@ -96,7 +96,7 @@ The reverse is also possible: if the singular values of $W_h$ are greater than 1
 
 ## 7.5 The seq-to-seq architecture and the bottleneck
 
-Many NLP tasks require mapping a variable-length input sequence to a variable-length output sequence — for example, machine translation. This gave rise to the **encoder-decoder** or **seq-to-seq** architecture.
+Many NLP tasks require mapping a variable-length input sequence to a variable-length output sequence — for example, machine translation. This gave rise to the **encoder-decoder** or **seq-to-seq** architecture [Sutskever et al., 2014; Cho et al., 2014].
 
 **Encoder**: an RNN reads the source sequence word by word and produces a final hidden state $\mathbf{h}_T$ — a single fixed-size vector that is supposed to capture the entire meaning of the source sentence.
 
@@ -112,7 +112,7 @@ Target: "Cats eat fish"
 
 This architecture works surprisingly well for short sequences, but it has a fundamental flaw: **the bottleneck**. The entire meaning of the source sentence — every word, every grammatical relationship — must be crammed into a single fixed-size vector $\mathbf{h}_T$. For long sentences, this is simply too much information for one vector to hold.
 
-Ran Mooney (2014) famously put it: *"You can't represent the meaning of a sentence in a [single] vector."*
+Ran Mooney (2014) famously put it: *"You can't represent the meaning of a sentence in a [single] vector."* [attributed in ADV NLP Course Notes; original source unverified — > [!todo] locate primary citation]
 
 The bottleneck manifests as degraded translation quality as sentence length increases — a well-documented empirical finding in early NLP systems.
 
@@ -124,7 +124,7 @@ Two architectural improvements were developed to partially address the vanishing
 
 ### LSTM (Long Short-Term Memory)
 
-An LSTM augments the basic RNN with a **cell state** $\mathbf{c}_t$ — a "highway" for information to flow across many timesteps with minimal transformation — and three **gates** that control what information is written to, read from, or forgotten from the cell state.
+An LSTM augments the basic RNN with a **cell state** [Hochreiter & Schmidhuber, 1997] $\mathbf{c}_t$ — a "highway" for information to flow across many timesteps with minimal transformation — and three **gates** that control what information is written to, read from, or forgotten from the cell state.
 
 - **Forget gate**: decides what to erase from the cell state: $\mathbf{f}_t = \sigma(W_f [\mathbf{h}_{t-1}, \mathbf{x}_t])$
 - **Input gate**: decides what new information to write: $\mathbf{i}_t = \sigma(W_i [\mathbf{h}_{t-1}, \mathbf{x}_t])$
@@ -135,7 +135,7 @@ $$\mathbf{c}_t = \mathbf{f}_t \odot \mathbf{c}_{t-1} + \mathbf{i}_t \odot \tilde
 
 Because the forget gate can be close to 1 (keep everything), information from early steps can flow directly to late steps with little attenuation, reducing the vanishing gradient problem.
 
-### GRU (Gated Recurrent Unit)
+### GRU (Gated Recurrent Unit) [Cho et al., 2014]
 
 A simplified alternative with two gates instead of three. Fewer parameters than LSTM, comparable performance in practice.
 
@@ -167,3 +167,17 @@ This insight — that the decoder should be allowed to selectively access all en
 
 **Previous**: [[06-building-blocks|Chapter 6 — Building Blocks of Modern Neural Networks]]
 **Next**: [[08-attention-mechanism|Chapter 8 — The Attention Mechanism]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — source for the RNN formulation, seq-to-seq bottleneck discussion, and the Ran Mooney quote. See [[adv-nlp-course-notes]].
+- Elman, J. L. (1990). Finding Structure in Time. *Cognitive Science*, 14(2). — foundational RNN paper.
+- Hochreiter, S. & Schmidhuber, J. (1997). Long Short-Term Memory. *Neural Computation*, 9(8). — LSTM; the solution to vanishing gradients in RNNs.
+- Bengio, Y., Simard, P., & Frasconi, P. (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. *IEEE Transactions on Neural Networks*. — formal analysis of the vanishing gradient problem.
+- Cho, K. et al. (2014). Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation. *EMNLP*. — GRU and the encoder-decoder architecture.
+- Sutskever, I., Vinyals, O., & Le, Q. V. (2014). Sequence to Sequence Learning with Neural Networks. *NeurIPS*. — seq-to-seq with LSTM; established the encoder-decoder paradigm.
+- Pascanu, R., Mikolov, T., & Bengio, Y. (2013). On the difficulty of training recurrent neural networks. *ICML*. — gradient explosion and clipping in RNNs.
+
+> [!todo] cite this — locate the primary source for the Ran Mooney (2014) "can't represent meaning in a single vector" quote; the ADV NLP notes attribute it but do not provide a paper title.

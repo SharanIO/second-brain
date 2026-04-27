@@ -82,7 +82,7 @@ As long as all individual characters (or bytes) are in the vocabulary, any strin
 
 ## 11.5 BPE: Byte-Pair Encoding
 
-BPE is the most widely used subword tokenization algorithm, used in GPT-2, GPT-3, Llama, Mistral, and many others. Originally developed for machine translation.
+BPE is the most widely used subword tokenization algorithm, used in GPT-2, GPT-3, Llama, Mistral, and many others. Originally developed for machine translation [Sennrich et al., 2016].
 
 ### The algorithm
 
@@ -136,13 +136,13 @@ Repeat. Eventually `hug` becomes a single token (high frequency), while `antidis
 
 ## 11.6 WordPiece and SentencePiece
 
-### WordPiece (BERT)
+### WordPiece (BERT) [Schuster & Nakamura, 2012; Wu et al., 2016]
 
 Similar to BPE but the merge criterion is different: instead of merging the *most frequent* pair, it merges the pair that **maximizes the language model likelihood** — i.e., the pair whose merging increases the probability of the training data the most.
 
 This tends to produce slightly different subword splits than BPE, but the practical difference is small. Subwords that are part of a larger word (but not at the start) are marked with `##`: "running" → `["run", "##ning"]`.
 
-### SentencePiece
+### SentencePiece [Kudo & Richardson, 2018]
 
 A library that implements both BPE and WordPiece, with one important difference: it operates directly on the raw text string **without any pretokenization**. It treats the space character as a regular character, and uses a special `▁` marker to indicate the beginning of a word.
 
@@ -161,7 +161,7 @@ Most tokenizers are designed around English, which uses spaces between words and
 
 In multilingual models (mBERT, mT5, BLOOM), the vocabulary must accommodate all languages simultaneously. Languages with large training corpora get more vocabulary entries; low-resource languages are underrepresented and their texts are tokenized into many more pieces — making them disproportionately expensive to process.
 
-**ByT5** takes the opposite approach: train directly on **bytes** (vocabulary size = 256). No tokenization design decisions required; every language is handled uniformly. The tradeoff is very long sequences and a heavier encoder, but the model generalizes well across languages and handles novel inputs robustly.
+**ByT5** [Xue et al., 2022] takes the opposite approach: train directly on **bytes** (vocabulary size = 256). No tokenization design decisions required; every language is handled uniformly. The tradeoff is very long sequences and a heavier encoder, but the model generalizes well across languages and handles novel inputs robustly.
 
 ---
 
@@ -187,3 +187,18 @@ Tokenization has subtle effects on model behavior:
 
 **Previous**: [[10-pretraining-objectives|Chapter 10 — Pretraining]]
 **Next**: [[12-finetuning-peft-alignment|Chapter 12 — Finetuning, PEFT, and Alignment]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — primary source for the tokenization survey, the hug/pug BPE example, BPE algorithm steps, and multilingual challenges. See [[adv-nlp-course-notes]].
+- Sennrich, R., Haddow, B., & Birch, A. (2016). Neural Machine Translation of Rare Words with Subword Units. *ACL*. — BPE for NMT; the paper that popularized subword tokenization.
+- Schuster, M. & Nakamura, K. (2012). Japanese and Korean Voice Search. *ICASSP*. — original WordPiece paper.
+- Wu, Y. et al. (2016). Google's Neural Machine Translation System: Bridging the Gap between Human and Machine Translation. *arXiv:1609.08144*. — WordPiece as used in production at Google; later adopted for BERT.
+- Kudo, T. & Richardson, J. (2018). SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing. *EMNLP*. — SentencePiece library.
+- Kudo, T. (2018). Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates. *ACL*. — unigram language model tokenization (alternative to BPE within SentencePiece).
+- Xue, L. et al. (2022). ByT5: Towards a Token-Free Future with Pre-trained Byte-to-Byte Models. *TACL*. — byte-level tokenization with T5.
+- Jurafsky, D. & Martin, J. H. (2023). *Speech and Language Processing* (3rd ed. draft), Ch. 2. — comprehensive tokenization coverage.
+
+> [!todo] cite this — add a reference for the exact Unicode character count (~138k symbols) and standard multilingual vocab size conventions (32k–64k).

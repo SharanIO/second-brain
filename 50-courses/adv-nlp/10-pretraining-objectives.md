@@ -40,7 +40,7 @@ This is the same objective we discussed in Chapter 1, implemented with a decoder
 
 The elegance of this objective is that **a single forward pass over a sequence of $T$ tokens generates $T$ training examples** — one for each position. This makes training extremely efficient.
 
-**Which models**: GPT, GPT-2, GPT-3, GPT-4, Llama, Mistral, Claude, Gemini.
+**Which models**: GPT [Radford et al., 2018], GPT-2 [Radford et al., 2019], GPT-3 [Brown et al., 2020], Llama [Touvron et al., 2023], Mistral [Jiang et al., 2023].
 
 ### Emergent properties
 
@@ -51,7 +51,7 @@ When CLM models are trained at sufficient scale, they develop capabilities that 
 - **Code generation**: despite training only on next-token prediction of mixed text-code data.
 - **Instruction following**: with some finetuning (Chapter 12).
 
-These emergent properties are not understood theoretically, but they are empirically robust and scale roughly predictably with model and data size.
+These emergent properties are not understood theoretically, but they are empirically robust and scale roughly predictably with model and data size [Wei et al., 2022; Kaplan et al., 2020].
 
 ---
 
@@ -87,7 +87,7 @@ BERT prepends a special `[CLS]` (classification) token to every input. At the en
 
 The original BERT paper added a second pretraining objective: given two segments of text, predict whether the second follows the first in the original document. Later analysis (RoBERTa) found NSP was not helpful and dropped it.
 
-**Which models**: BERT, RoBERTa (no NSP, more data), ELECTRA (predict replaced tokens), DeBERTa.
+**Which models**: BERT [Devlin et al., 2019], RoBERTa [Liu et al., 2019] (no NSP, more data), ELECTRA [Clark et al., 2020] (predict replaced tokens), DeBERTa [He et al., 2021].
 
 ---
 
@@ -108,7 +108,7 @@ T5 uses a variant of MLM called **span corruption**:
 
 The sentinel tokens act as placeholders. The decoder generates a compact sequence — only the missing spans, not the full original sentence — which is more efficient than predicting individual tokens one by one.
 
-**Which models**: T5, mT5 (multilingual), FLAN-T5.
+**Which models**: T5 [Raffel et al., 2020], mT5 [Xue et al., 2021], FLAN-T5 [Chung et al., 2022].
 
 ---
 
@@ -162,3 +162,22 @@ None of these were explicitly taught. They are side effects of learning to predi
 
 **Previous**: [[09-transformers|Chapter 9 — The Transformer Architecture]]
 **Next**: [[11-tokenization|Chapter 11 — Tokenization]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — source for the pretraining/finetuning framing, BERT MLM procedure, T5 span-masking description, and the decoder-only vs. encoder-only comparison. See [[adv-nlp-course-notes]].
+- Devlin, J. et al. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. *NAACL*. — MLM and NSP objectives; [CLS] token for classification.
+- Radford, A. et al. (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Blog. — GPT-1; causal LM pretraining.
+- Radford, A. et al. (2019). Language Models are Unsupervised Multitask Learners. OpenAI Blog. — GPT-2; zero-shot task performance.
+- Brown, T. et al. (2020). Language Models are Few-Shot Learners. *NeurIPS*. — GPT-3; in-context learning and few-shot emergent abilities.
+- Raffel, C. et al. (2020). Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer. *JMLR*, 21. — T5; span masking and text-to-text framing.
+- Liu, Y. et al. (2019). RoBERTa: A Robustly Optimized BERT Pretraining Approach. *arXiv:1907.11692*. — shows NSP hurts; more data and longer training help significantly.
+- Clark, K. et al. (2020). ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. *ICLR*.
+- Xue, L. et al. (2021). mT5: A Massively Multilingual Pre-Trained Text-to-Text Transformer. *NAACL*.
+- Chung, H. W. et al. (2022). Scaling Instruction-Finetuned Language Models. *arXiv:2210.11416*. — FLAN-T5.
+- Wei, J. et al. (2022). Emergent Abilities of Large Language Models. *TMLR*. — documents emergent capabilities that appear suddenly with scale.
+- Kaplan, J. et al. (2020). Scaling Laws for Neural Language Models. *arXiv:2001.08361*. — power-law scaling of loss with model size, data, and compute.
+- Touvron, H. et al. (2023). Llama 2: Open Foundation and Fine-Tuned Chat Models. *arXiv:2307.09288*.
+- Jiang, A. Q. et al. (2023). Mistral 7B. *arXiv:2310.06825*.

@@ -87,11 +87,11 @@ The matrix $E$ is a learned parameter — it is randomly initialized at the star
 
 The remarkable thing about word embeddings is that, trained on a large corpus with a language modeling objective, they spontaneously learn to encode semantic relationships.
 
-The intuition comes from the **distributional hypothesis**: *words that occur in similar contexts tend to have similar meanings*. "Cat" and "kitten" both appear near words like "fur", "meow", "litter", and "purr". The language modeling objective pushes the model to give similar predictions for similar contexts — and therefore to give similar representations to words that appear in similar contexts.
+The intuition comes from the **distributional hypothesis**: *words that occur in similar contexts tend to have similar meanings* [Harris, 1954; Firth, 1957]. "Cat" and "kitten" both appear near words like "fur", "meow", "litter", and "purr". The language modeling objective pushes the model to give similar predictions for similar contexts — and therefore to give similar representations to words that appear in similar contexts.
 
 After training, you tend to find:
 - $\text{sim}(\text{"cat"}, \text{"kitten"}) \gg \text{sim}(\text{"cat"}, \text{"democracy"})$
-- Arithmetic relationships: $\mathbf{e}_{\text{king}} - \mathbf{e}_{\text{man}} + \mathbf{e}_{\text{woman}} \approx \mathbf{e}_{\text{queen}}$
+- Arithmetic relationships: $\mathbf{e}_{\text{king}} - \mathbf{e}_{\text{man}} + \mathbf{e}_{\text{woman}} \approx \mathbf{e}_{\text{queen}}$ [Mikolov et al., 2013]
 - Clusters of semantically related words sitting close together in the embedding space
 
 > [!warning] Interpretability
@@ -142,3 +142,15 @@ The embedding dimension is one of the most important architectural choices in a 
 
 **Previous**: [[03-neural-networks-primer|Chapter 3 — Neural Networks: A Primer]]
 **Next**: [[05-training-mechanics|Chapter 5 — Training Neural Networks: Backpropagation and Optimizers]]
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — source for the embedding-as-weight-matrix framing and the one-hot comparison. See [[adv-nlp-course-notes]].
+- Harris, Z. S. (1954). Distributional structure. *Word*, 10(2–3). — the distributional hypothesis.
+- Firth, J. R. (1957). A synopsis of linguistic theory. *Studies in Linguistic Analysis*. — "You shall know a word by the company it keeps."
+- Bengio, Y. et al. (2003). A Neural Probabilistic Language Model. *JMLR*, 3. — first practical neural LM with learned word embeddings.
+- Mikolov, T. et al. (2013). Efficient Estimation of Word Representations in Vector Space. *arXiv:1301.3781*. — Word2Vec; source of the king−man+woman≈queen analogy.
+- Pennington, J., Socher, R., & Manning, C. D. (2014). GloVe: Global Vectors for Word Representation. *EMNLP*. — alternative embedding method; still widely used as a baseline.
+- Paszke, A. et al. (2019). PyTorch: An Imperative Style, High-Performance Deep Learning Library. *NeurIPS*. — `nn.Embedding` used in code example.

@@ -53,7 +53,7 @@ For small models (< 1B parameters), full finetuning is practical. For large mode
 
 The core insight of PEFT: **most of the adaptation needed for a specific task lies in a small subspace of the parameter space**. We do not need to update all parameters; we can freeze most of the pretrained model and update only a small number of new parameters.
 
-### Prompt tuning
+### Prompt tuning [Lester et al., 2021]
 
 The simplest PEFT method: prepend a small number of learned "virtual" token embeddings to the input sequence. Only these embeddings are updated during finetuning; the rest of the model is frozen.
 
@@ -69,7 +69,7 @@ The virtual tokens `<v1>, <v2>, <v3>` are not in the vocabulary — they are fre
 
 **Limitation**: works best with very large models (> 10B). For smaller models, full finetuning consistently outperforms prompt tuning. Also: the virtual tokens cannot provide per-layer guidance — they are only added at the input.
 
-### Prefix tuning
+### Prefix tuning [Li & Liang, 2021]
 
 An extension of prompt tuning: prepend learned virtual tokens to the keys and values in **every layer's attention**, not just the input embeddings. This allows the "soft prompt" to influence the model's representations at every depth.
 
@@ -85,7 +85,7 @@ Prefix tuning is more expressive than prompt tuning but uses more memory (one pr
 
 ## 12.4 LoRA: Low-Rank Adaptation
 
-LoRA (Hu et al., 2021, Microsoft Research) is the dominant PEFT method for large language models. It is based on one key observation:
+LoRA [Hu et al., 2022] is the dominant PEFT method for large language models. It is based on one key observation:
 
 **The weight updates during finetuning have low intrinsic rank.** When you finetune a model for a specific task, the change in the weight matrices $\Delta W = W_{finetuned} - W_{pretrained}$ tends to lie in a much lower-dimensional subspace than the full $m \times n$ matrix.
 
@@ -141,7 +141,7 @@ If you want to serve multiple different LoRA adapters simultaneously (different 
 
 LoRA reduces the number of trainable parameters. But during training, we still need to store the frozen pretrained weights in GPU memory — and a 70B-parameter model in FP32 needs 280 GB of VRAM. That is more than a cluster of A100 GPUs combined.
 
-**QLoRA** (Dettmers et al., 2023) solves this by **quantizing** the frozen pretrained weights to 4-bit integers before applying LoRA on top.
+**QLoRA** [Dettmers et al., 2023] solves this by **quantizing** the frozen pretrained weights to 4-bit integers before applying LoRA on top.
 
 ### Quantization basics
 
@@ -188,7 +188,7 @@ The model learns to recognize instruction-response format and to produce helpful
 
 ## 12.7 RLHF: learning from human preferences
 
-**Reinforcement Learning from Human Feedback** (RLHF) addresses SFT's limitations by explicitly training the model to produce outputs that humans prefer.
+**Reinforcement Learning from Human Feedback** (RLHF) [Christiano et al., 2017; Ouyang et al., 2022] addresses SFT's limitations by explicitly training the model to produce outputs that humans prefer.
 
 ### The three-step pipeline
 
@@ -225,7 +225,7 @@ Collecting human preference data is extremely expensive. Alternatives:
 
 **RLAIF** (RL from AI Feedback): replace human annotators with a capable AI (e.g., GPT-4). The AI ranks responses according to a set of principles. Used in Anthropic's Constitutional AI.
 
-**DPO** (Direct Preference Optimization): a mathematically equivalent alternative to PPO that skips the explicit reward model. Given preference pairs $(y_w, y_l)$, DPO directly optimizes the policy with a classification-style loss. Simpler to implement, more stable to train. Has become the practical standard over PPO for most applications.
+**DPO** (Direct Preference Optimization) [Rafailov et al., 2023]: a mathematically equivalent alternative to PPO that skips the explicit reward model. Given preference pairs $(y_w, y_l)$, DPO directly optimizes the policy with a classification-style loss. Simpler to implement, more stable to train. Has become the practical standard over PPO for most applications.
 
 ---
 
@@ -245,3 +245,22 @@ Collecting human preference data is extremely expensive. Alternatives:
 ---
 
 *End of course. You now have the conceptual foundation to read current NLP research papers, understand model documentation, and experiment with LLMs at a technical level.*
+
+---
+
+## References
+
+- **ADV NLP Course Notes** — primary source for PEFT methods (prompt tuning, prefix tuning, LoRA, QLoRA), SFT, the RLHF pipeline, reward modeling with Bradley-Terry, and PPO/RAFT. See [[adv-nlp-course-notes]].
+- Lester, B., Al-Rfou, R., & Constant, N. (2021). The Power of Scale for Parameter-Efficient Prompt Tuning. *EMNLP*. — prompt tuning.
+- Li, X. L. & Liang, P. (2021). Prefix-Tuning: Optimizing Continuous Prompts for Generation. *ACL*. — prefix tuning.
+- Hu, E. J. et al. (2022). LoRA: Low-Rank Adaptation of Large Language Models. *ICLR*. — the dominant PEFT method; rank decomposition of weight updates.
+- Dettmers, T. et al. (2023). QLoRA: Efficient Finetuning of Quantized LLMs. *NeurIPS*. — 4-bit quantization + LoRA; enables finetuning 65B models on a single GPU.
+- Christiano, P. et al. (2017). Deep Reinforcement Learning from Human Preferences. *NeurIPS*. — original RLHF paper.
+- Ouyang, L. et al. (2022). Training language models to follow instructions with human feedback. *NeurIPS*. — InstructGPT; the RLHF pipeline as applied to GPT-3.
+- Rafailov, R. et al. (2023). Direct Preference Optimization: Your Language Model is Secretly a Reward Model. *NeurIPS*. — DPO; simpler alternative to PPO.
+- Bai, Y. et al. (2022). Constitutional AI: Harmlessness from AI Feedback. *arXiv:2212.08073*. — RLAIF / Constitutional AI (Anthropic).
+- Dong, R. et al. (2023). RAFT: Reward rAnked Fine-Tuning for Generative Foundation Model Alignment. *arXiv:2304.06767*. — RAFT referenced in Section 12.7.
+- Schulman, J. et al. (2017). Proximal Policy Optimization Algorithms. *arXiv:1707.06347*. — PPO; the RL algorithm used in RLHF Step 3.
+- Bradley, R. A. & Terry, M. E. (1952). Rank Analysis of Incomplete Block Designs. *Biometrika*. — Bradley-Terry pairwise preference model used for reward modeling.
+
+> [!todo] cite this — add a reference for the specific QLoRA NF4 (Normal Float 4-bit) data type design; Dettmers et al. 2023 covers it but a separate quantization reference would be useful.
