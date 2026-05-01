@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "9e07b63b477958d4",
+        "id": "0af8bc9eecc9dd66",
         "type": "tabs",
         "children": [
           {
-            "id": "4bbde97562b209e9",
+            "id": "a595a4d4e9479c1f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "templates/concept.md",
+                "file": "scripts/git-cleanup-runbook.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "concept"
+              "title": "git-cleanup-runbook"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "templates/concept.md",
+                "file": "scripts/git-cleanup-runbook.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for concept"
+              "title": "Backlinks for git-cleanup-runbook"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "templates/concept.md",
+                "file": "scripts/git-cleanup-runbook.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from concept"
+              "title": "Outgoing links from git-cleanup-runbook"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "templates/concept.md",
+                "file": "scripts/git-cleanup-runbook.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of concept"
+              "title": "Outline of git-cleanup-runbook"
             }
           },
           {
@@ -196,12 +196,54 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "4bbde97562b209e9",
+  "active": "a595a4d4e9479c1f",
   "lastOpenFiles": [
-    "10-daily/2026-04-21.md",
-    "templates/concept.md",
-    "templates/paper.md.md",
-    "templates/daily.md.md",
-    "00-inbox/Untitled.md"
+    "raw/dumps/~$PhD_Robotics_Labs_Ranked.xlsx",
+    "raw/dumps/PhD_Robotics_Labs_Ranked.xlsx",
+    "raw/dumps/Let's search the labs.md",
+    "scripts/git-cleanup-runbook.md",
+    "scripts",
+    "raw/README.md",
+    "wiki-playbook.md",
+    "CLAUDE.md",
+    "README.md.18d7297598ec67ff5337237eab226010.tmp",
+    "templates/README.md",
+    "raw/handwriting/README.md",
+    "raw/transcripts/README.md",
+    "raw/articles/README.md",
+    "raw/books/README.md",
+    "raw/papers/README.md",
+    "raw/incoming/README.md",
+    "code/README.md",
+    "assets/README.md",
+    "90-archive/README.md",
+    "50-courses/README.md",
+    "40-projects/README.md",
+    "30-papers/README.md",
+    "20-concepts/README.md",
+    "10-daily/README.md",
+    "00-inbox/README.md",
+    "raw/dumps/README.md",
+    "raw/dumps",
+    "dumps-playbook.md",
+    "Untitled.canvas",
+    "00-inbox/Sai_Sharan_Thirunagari_Resume.pdf",
+    "50-courses/adv-nlp/07-recurrent-neural-networks.md",
+    "00-inbox/Unconfirmed 200591.crdownload",
+    "00-inbox/Unconfirmed 139636.crdownload",
+    "40-projects/resume-meta-ai-prompt.md",
+    "40-projects/resume-writing-rules.md.tmp.39404.1777581295433",
+    "00-inbox/main_concise_no_summary.tex",
+    "00-inbox/Unconfirmed 349764.crdownload",
+    "raw/papers/NLP/_page_129_Figure_0.jpeg",
+    "raw/papers/NLP/_page_128_Picture_0.jpeg",
+    "raw/papers/NLP/_page_127_Picture_0.jpeg",
+    "raw/papers/NLP/_page_126_Picture_0.jpeg",
+    "raw/papers/NLP/_page_103_Figure_0.jpeg",
+    "raw/papers/NLP/_page_99_Figure_0.jpeg",
+    "raw/papers/NLP/_page_33_Picture_0.jpeg",
+    "raw/papers/NLP/_page_29_Figure_0.jpeg",
+    "raw/papers/NLP/_page_9_Picture_1.jpeg",
+    "raw/papers/NLP/_page_0_Picture_0.jpeg"
   ]
 }

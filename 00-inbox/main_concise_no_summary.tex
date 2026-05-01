@@ -1,0 +1,161 @@
+%-------------------------
+\documentclass[letterpaper,10pt]{article}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-1in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.2in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% Custom commands for simplicity
+\newcommand{\resumeItem}[1]{
+  \begin{itemize}[leftmargin=*,label={\textbullet}, itemsep=-8pt]
+    \item {#1}
+    \vspace{-8pt}
+  \end{itemize}
+}
+\newcommand{\resumeSubheadingedu}[5]{
+  \item
+    \textbf{#1} \hfill \textbf{#2} \\
+    \text{#3} \hfill \text{#4} \\
+    \textit{\small{Relevant Courses: #5}} \\
+    \vspace{-5pt}
+}
+\newcommand{\resumeSubheadingexp}[4]{
+  \item
+    \textbf{#1} \hfill \textbf{#2} \\
+    \textbf{#3} \hfill \textbf{#4} \\
+    \vspace{-5pt}
+}
+\newcommand{\resumeSubheadingproject}[1]{
+  \item
+    \textbf{#1} \hfill  \\
+    \vspace{-5pt}
+}
+
+\newcommand{\resumeSectionStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSectionEnd}{\end{itemize}\vspace{-5pt}}
+
+%--------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING---------------------------------
+\begin{center}
+    {\huge \scshape \textbf{Sai Sharan Thirunagari}}\\
+    Redmond, WA \textbar\
+    \underline{\href{mailto:saisharanthirunagari@gmail.com}{saisharanthirunagari@gmail.com}} \textbar\
+    \underline{\href{https://www.linkedin.com/in/sai-sharan-thirunagari/}{linkedin.com/in/sai-sharan-thirunagari}} \textbar\
+    716-548-8844 \textbar\
+    \underline{\href{https://sharanio.github.io/sharan/}{Portfolio}}
+\end{center}
+
+%-----------SUMMARY--------------------------------
+\section{Summary}
+\resumeSectionStart
+  \resumeItem{Robotics engineer building the systems that let robots sense and respond to physical contact.} 
+  \resumeItem{Currently developing tactile perception for a dexterous manipulation at Meta Reality Labs, previously designed force-controlled manipulation systems for biomedical research.}
+  \resumeItem{Experienced across the full stack from hardware design and real-time embedded C++ to computer vision and signal processing.}
+\resumeSectionEnd
+
+%-------------------EXPERIENCE----------------------
+\section{Experience}
+  \resumeSectionStart
+  \resumeSubheadingexp{Unify Technologies Inc. $|$ Meta Reality Labs (Client)}{Redmond, WA}{Robotics Engineer, Contract}{March 2025 - Present}
+    \resumeItem{Developing sensing and perception systems for a dexterous manipulation robot hand, from real-time sensor integration to contact mechanics research for robotic grasping.}
+    \resumeItem{Characterizing incipient slip behavior for robotic grasping using contact surface imaging and multi-axis force analysis, developing predictive methods for early slip detection.}
+    \resumeItem{Designed closed-loop force-controlled characterization systems for contact and slip research, with \textbf{ATI Nano17}/\textbf{Futek} multi-axis force/torque sensing, precision actuation, and synchronized imaging.}
+    \resumeItem{Engineered a real-time \textbf{C++} data acquisition and safety interlock system over \textbf{EtherCAT}, streaming sensor data at kHz rates while monitoring for anomalies to prevent equipment damage during high-force testing.}
+    \resumeItem{Built computer vision and signal processing methods for contact analysis, combining image-based deformation tracking in \textbf{OpenCV} with frequency-domain force characterization to study slip behavior.}
+    \resumeItem{Implemented \textbf{C++} dataflow transformers for real-time sensor integration, streaming force/torque, IMU, and \textbf{Intel RealSense D455} depth data through a modular pipeline architecture.}
+    \resumeItem{Architected a producer-consumer sensor data pipeline in \textbf{Python} with shared-memory IPC and async I/O for real-time multi-sensor data collection and recording.}
+    \resumeItem{Developed \textbf{Dynamixel} servo motor control software for a dexterous robotic hand, enabling multi-DOF joint actuation across the manipulation platform.}
+    \resumeItem{Built a rotational stiffness characterization setup for soft robotic actuators, working with the actuator design team to validate joint compliance for end-effector design.}
+    \resumeItem{Identified and overhauled the automated sensor qualification system in \textbf{C++}, reducing full characterization cycles from over a week to same-day completion and eliminating recurring system crashes.}
+
+    \vspace{10pt}
+    \resumeSubheadingexp{ONY Biotech - Human in Loops Systems Lab}{Buffalo, NY}{Graduate Research Engineer}{April 2023 - Jan 2025}
+    \resumeItem{Characterized joint stiffness and controller gain tradeoffs in \textbf{MATLAB}, showing how low stiffness improves impact safety without losing disturbance rejection.}
+    \resumeItem{Engineered a closed-loop force controller in \textbf{C++} with \textbf{ATI Nano25} 6-axis sensors, achieving 0.1N contact precision for biomedical tissue manipulation.}
+    \resumeItem{Implemented 1 kHz impedance control on a \textbf{Schunk Powerball} arm over \textbf{SOEM}, with a 30N contact ceiling derived from tissue damage models.}
+    \resumeItem{Built a custom inverse dynamics solver in \textbf{C++} using rigid body dynamics, computing minimum-jerk trajectories to eliminate discontinuities during tissue contact.}
+    \resumeItem{Designed a probabilistic state estimator in \textbf{ROS} fusing high-rate \textbf{IMU} and stereo camera data, achieving sub-centimeter end-effector tracking accuracy.}
+    \resumeItem{Optimized \textbf{PRM} and \textbf{RRT*} motion planners in \textbf{C++}/\textbf{ROS}, reducing path computation time for real-time obstacle avoidance on a high-DOF manipulator.}
+    \resumeItem{Replaced the default Jacobian-transpose IK solver with a custom Levenberg-Marquardt implementation in \textbf{C++}, improving convergence speed near singularities.}
+    \resumeItem{Integrated a \textbf{Vicon} motion capture system into the control pipeline via multi-threaded \textbf{C++}, providing millimeter-accurate position ground truth at low latency.}
+    \resumeItem{Deployed a fine-tuned \textbf{PyTorch} object detection model on \textbf{Boston Dynamics Spot} for autonomous object retrieval in unstructured indoor environments.}
+    \resumeItem{Built a multi-hypothesis \textbf{PCL}-based tracker with predictive state estimation, maintaining target lock through partial occlusions during retrieval tasks.}
+
+  \resumeSectionEnd
+
+%-----------SKILLS---------------------------------
+\section{Skills}
+\resumeSectionStart
+    \resumeItem{\textbf{Languages}{: C++, Python, MATLAB, Bash}}
+    \resumeItem{\textbf{Robotics \& Control}{: ROS, SOEM, EtherCAT, Impedance Control, Motion Planning (PRM, RRT*), Probabilistic State Estimation (EKF), Sensor Fusion, SLAM, Rigid Body Dynamics, Inverse Kinematics}}
+    \resumeItem{\textbf{Computer Vision \& ML}{: OpenCV, PyTorch, Point Cloud Library (PCL), Vision-based Motion Estimation, Image Segmentation, Spatial Filtering, Object Detection, 3D Reconstruction}}
+    \resumeItem{\textbf{Data \& Analysis}{: NumPy, SciPy, Dash/Plotly, Signal Processing, FFT Analysis, Data Synchronization}}
+    \resumeItem{\textbf{Systems \& Tools}{: Dataflow Architecture, Producer-Consumer Pipelines, Shared-Memory IPC, Multi-threading, Async I/O, Hardware-in-the-Loop Testing, Linux, Git, Docker, SolidWorks}}
+    \resumeItem{\textbf{Sensors \& Hardware}{: Force/Torque Sensors (ATI Nano17/25, Futek), Dynamixel Servos, Intel RealSense, Camera, LiDAR, IMU, Vicon Motion Capture, Sensor Calibration, Real-time Data Acquisition}}
+\resumeSectionEnd
+
+%-----------PROJECTS-------------------------------
+\section{Projects}
+\resumeSectionStart
+    \resumeSubheadingproject{Autonomous Navigation \& State Estimation System \textbar\ \normalfont \textit{Python, OpenCV, ROS, LiDAR}}
+    \resumeItem{Built a stereo camera state estimation pipeline in \textbf{OpenCV} using RANSAC and bundle adjustment, outperforming wheel odometry on trajectory accuracy.}
+    \resumeItem{Implemented particle filter localization within a \textbf{SLAM} framework using LiDAR scan matching for autonomous navigation on an F1tenth platform.}
+
+    \resumeSubheadingproject{Advanced Robotic Manipulation \& Sensor Fusion \textbar\ \normalfont \textit{C++, ROS, Extended Kalman Filter}}
+    \resumeItem{Built an EKF-based visual-inertial odometry system in \textbf{C++} fusing stereo cameras, LiDAR, and IMU for sub-centimeter localization in GPS-denied environments.}
+    \resumeItem{Benchmarked RRT, A*, and Temporal PRM planners in \textbf{ROS} to find the best combination for real-time obstacle avoidance on a high-DOF manipulator.}
+
+    \resumeSubheadingproject{Terrain-Adaptive Embedded Control System \textbar\ \normalfont \textit{C++, Nvidia Jetson Nano, PyBullet}}
+    \resumeItem{Built an embedded control system on \textbf{NVIDIA Jetson Nano} coordinating 10 servo motors via I2C, testing three locomotion gaits across multiple terrain types.}
+    \resumeItem{Tuned gait parameters in \textbf{PyBullet} simulation and transferred them to physical hardware, achieving stable locomotion across unstructured terrain.}
+\resumeSectionEnd
+
+%-----------EDUCATION-------------------------------
+\section{Education}
+  \resumeSectionStart
+    \resumeSubheadingedu
+      {Master of Science - Robotics}{Buffalo, NY}
+      {University at Buffalo, The State University of New York - GPA: 3.62}{June 2024}
+      {Robotic Control Systems, Robotics Kinematics and Dynamics, Machine Learning, Computer Vision}
+      \vspace{4pt}
+    \resumeSubheadingedu
+      {Bachelor of Technology in Mechanical Engineering}{Delhi NCR, India}
+      {Shiv Nadar University}{May 2022}
+      {Kinematics and Dynamics of Machines, Advanced Manufacturing, CAD and CAM, Machine Design}
+  \resumeSectionEnd
+
+\end{document}
