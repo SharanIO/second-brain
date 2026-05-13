@@ -1,4 +1,4 @@
 {
-  "folder": "10-daily",
-  "template": "templates/daily.md"
+  "folder": "daily",
+  "template": "_templates/daily.md"
 }

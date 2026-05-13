@@ -1,6 +1,6 @@
 {
   "command_timeout": 5,
-  "templates_folder": "templates",
+  "templates_folder": "_templates",
   "templates_pairs": [
     [
       "",
@@ -29,8 +29,8 @@
   "syntax_highlighting": true,
   "syntax_highlighting_mobile": false,
   "enabled_templates_hotkeys": [
-    "templates/paper.md.md",
-    "templates/concept.md"
+    "_templates/paper.md",
+    "_templates/concept.md"
   ],
   "startup_templates": [
     ""

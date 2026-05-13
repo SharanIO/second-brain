@@ -12,63 +12,67 @@ Two agent-facing playbooks at the root:
 The two playbooks have *opposite* style contracts. Make sure the right one applies to the right input.
 
 Also:
-- **`CLAUDE.md`** — auto-loaded by Claude Code (and read by any Claude agent at session start). Contains trigger vocabulary, default behaviors, and the recommended file-read order for an agent starting fresh in the vault.
-- **`.cursorrules`** — original user/vault context block, used by Cursor and referenced by `CLAUDE.md`.
+- **`CLAUDE.md`** — auto-loaded by Claude Code. Contains trigger vocabulary, default behaviors, and session startup sequence.
+- **`WIKI.md`** — schema reference: all note types, frontmatter conventions, folder purposes, and core operations.
+- **`.cursorrules`** — original user/vault context block.
 
 ## Folder map
 
-| Folder | Purpose | README |
-|---|---|---|
-| `00-inbox/` | Generic unfiled graveyard | `00-inbox/README.md` |
-| `10-daily/` | Daily notes (one per day) | `10-daily/README.md` |
-| `20-concepts/` | Wiki concept pages (the synthesis layer) | `20-concepts/README.md` |
-| `30-papers/` | One review note per academic paper | `30-papers/README.md` |
-| `40-projects/` | Multi-thread projects (PhD apps, music, apartment, etc.) | `40-projects/README.md` |
-| `50-courses/` | Structured course notes | `50-courses/README.md` |
-| `90-archive/` | Deprecated content (never deleted) | `90-archive/README.md` |
-| `assets/` | Images and binaries embedded in notes | `assets/README.md` |
-| `code/` | Code implementations linked to notes | `code/README.md` |
-| `raw/` | Source material (sources stay forever) | `raw/README.md` |
-| `raw/incoming/` | External source staging area | `raw/incoming/README.md` |
-| `raw/papers/` | Filed academic papers (PDFs) | `raw/papers/README.md` |
-| `raw/books/` | Books and book-length sources | `raw/books/README.md` |
-| `raw/articles/` | Web articles, blog posts | `raw/articles/README.md` |
-| `raw/transcripts/` | Transcribed audio/video | `raw/transcripts/README.md` |
-| `raw/handwriting/` | OCR'd handwritten notes | `raw/handwriting/README.md` |
-| `raw/dumps/` | Stream-of-consciousness typed dumps | `raw/dumps/README.md` |
-| `templates/` | Templater plugin templates | `templates/README.md` |
+| Folder | Purpose |
+|---|---|
+| `wiki/concepts/` | Atomic concept pages (the synthesis layer) |
+| `wiki/entities/` | Named subjects: people, papers, tools, orgs, labs |
+| `wiki/domains/` | High-level domain overview pages |
+| `wiki/projects/` | Active projects with status, decisions, artifacts |
+| `wiki/courses/` | Structured course notes |
+| `wiki/sources/` | Wiki pages synthesized from ingested source documents |
+| `wiki/questions/` | Open research questions |
+| `wiki/comparisons/` | Side-by-side concept/tool comparisons |
+| `wiki/folds/` | Log rollup pages (wiki-fold) |
+| `wiki/meta/` | Obsidian Bases dashboards |
+| `wiki/index.md` | Master catalog — updated on every ingest |
+| `wiki/hot.md` | Session context cache (~500 words) |
+| `wiki/log.md` | Append-only operation log |
+| `wiki/overview.md` | Executive summary + research gaps |
+| `raw/incoming/` | Drop zone for all new external sources |
+| `raw/papers/` | Filed paper source files (PDFs + extracted markdown) |
+| `raw/dumps/` | Stream-of-consciousness typed thoughts |
+| `daily/` | Daily notes (one per day) |
+| `assets/` | Images and binaries embedded in notes |
+| `code/` | Code implementations linked to wiki notes |
+| `guides/` | Runbooks and setup how-tos |
+| `archive/` | Deprecated content (never deleted) |
+| `inbox/` | Unrouted files awaiting a decision |
+| `_templates/` | Templater plugin templates |
 
 ## The two main routines
 
 ### 1. Source integration (wiki-playbook)
 
-You collect a paper / article / book / talk / handwritten note → drop it in the matching `raw/` subfolder (or `raw/incoming/` if unsure) → ask Claude to integrate it → relevant `20-concepts/` pages get updated, a `30-papers/` review note is created (if applicable), cross-links are added.
+Drop a paper / article / book / talk → into `raw/incoming/` → ask Claude to integrate it → relevant `wiki/concepts/` pages get updated, a `wiki/sources/` page is created, cross-links are added, `wiki/index.md` and `wiki/log.md` are updated.
 
 ### 2. Dump processing (dumps-playbook)
 
-You type a stream-of-consciousness note into `raw/dumps/` → ask Claude to "process the inbox" → Claude splits it by topic into organized notes (concepts, projects, or stubs) **without dropping a word** → original stays in `raw/dumps/` verbatim with `processed: YYYY-MM-DD` added to frontmatter.
+Type a stream-of-consciousness note into `raw/dumps/` → ask Claude to "process the inbox" → Claude splits it by topic into organized notes **without dropping a word** → original stays in `raw/dumps/` verbatim with `processed: YYYY-MM-DD` added to frontmatter.
 
 ## Commit conventions
 
-From `wiki-playbook.md`:
-
-- `vault-auto: ...` — auto-commits from Obsidian Git plugin.
+- `vault-auto: ...` — auto-commits from Obsidian Git plugin or PostToolUse hook.
 - `manual-edit: ...` — direct human edits.
 - `agent-edit: ...` — edits by Claude.
 
-One commit per logical unit (one paper integrated = one commit; one dump processed = one commit), not one giant commit at the end of a session.
+One commit per logical unit (one paper integrated = one commit; one dump processed = one commit).
 
 ## Frontmatter conventions
 
 Standard YAML fields used across the vault:
 
 ```yaml
-type: daily | concept | paper | project | transcript | handwriting | thought | stub-redirect
-status: stub | active | done | paused | blocked
+type: daily | concept | entity | domain | project | course | source | question | comparison
+status: stub | active | done | paused | blocked | open | answered
 last-updated: YYYY-MM-DD
-source: <relative path to source>
+source: <relative path to raw source>
 processed: YYYY-MM-DD
-archived: YYYY-MM-DD
 tags: [list]
 ```
 

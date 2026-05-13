@@ -50,9 +50,9 @@ When the user says "process the inbox" (or "process dumps", "go through dumps", 
    b. Identify distinct topical threads. One dump may contain one thread or several. Err on the side of fewer splits — only split when topics are clearly disjoint.
 
    c. For each thread, decide destination:
-      - **Technical/research thinking** (robotics, tactile sensing, ML, control, etc.) → append to existing `20-concepts/<concept>.md` under a `## Notes — YYYY-MM-DD` section, or create a new concept page (with `status: stub` if it needs more development).
-      - **Project-specific** (PhD applications, The Seventh Bar, apartment, immigration, resume, etc.) → append to existing `40-projects/<project>.md` under a `## Notes — YYYY-MM-DD` section, or create the project page if it doesn't exist.
-      - **Personal reflection / planning / life logistics** that doesn't fit a concept or project → most often this still belongs on a project page (e.g., a thought about apartment logistics → `40-projects/apartment-beaumont.md`). If it genuinely fits no project, append to today's `10-daily/YYYY-MM-DD.md` under `## Captured`.
+      - **Technical/research thinking** (robotics, tactile sensing, ML, control, etc.) → append to existing `wiki/concepts/<concept>.md` under a `## Notes — YYYY-MM-DD` section, or create a new concept page (with `status: stub` if it needs more development).
+      - **Project-specific** (PhD applications, The Seventh Bar, apartment, immigration, resume, etc.) → append to existing `wiki/projects/<project>.md` under a `## Notes — YYYY-MM-DD` section, or create the project page if it doesn't exist.
+      - **Personal reflection / planning / life logistics** that doesn't fit a concept or project → most often this still belongs on a project page (e.g., a thought about apartment logistics → `wiki/projects/apartment-beaumont.md`). If it genuinely fits no project, append to today's `daily/YYYY-MM-DD.md` under `## Captured`.
 
    d. Write the organized output, applying only the permitted operations from the lossless contract.
 

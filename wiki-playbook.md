@@ -5,8 +5,8 @@ This document instructs Claude Code on how to operate as the maintainer of this 
 ## The pattern
 
 This vault follows the Karpathy LLM-wiki pattern:
-- Sources land in `raw/` (subdivided into `papers/`, `books/`, `articles/`, `transcripts/`, `handwriting/`, with `incoming/` as the staging area).
-- The wiki lives in `20-concepts/`, `30-papers/`, `40-projects/`, `50-courses/` — these are the human-readable, linked, maintained pages.
+- Sources land in `raw/` (subdivided into `papers/` and `incoming/` as the staging area; `dumps/` for user's own thoughts).
+- The wiki lives in `wiki/` — subdivided into `concepts/`, `entities/`, `domains/`, `projects/`, `courses/`, `sources/`, `questions/`, `comparisons/`. These are the human-readable, linked, maintained pages.
 - The user reads sources and has conversations; you maintain the wiki as a side effect of those conversations.
 - The user almost never writes wiki pages directly. You do.
 
@@ -14,11 +14,12 @@ This vault follows the Karpathy LLM-wiki pattern:
 
 1. Read it in full from `raw/`.
 2. Identify which existing concept pages are relevant. Update them with new information, new examples, contradictions, or refined explanations.
-3. Identify concepts the source introduces that are not yet in the wiki. Create stub concept pages for them, marked with `status: stub` in frontmatter so the user can see they need engagement.
-4. Create a paper review note in `30-papers/` using the paper template, summarizing the source's contribution, method, key result, and your critique on the user's behalf (the user can revise).
-5. Cross-link aggressively — every concept mentioned in the paper review should link to its concept page (creating a stub if needed).
+3. Identify concepts the source introduces that are not yet in the wiki. Create stub concept pages in `wiki/concepts/`, marked with `status: stub` in frontmatter so the user can see they need engagement.
+4. Create a source page in `wiki/sources/` using the paper template, summarizing the source's contribution, method, key result, and your critique on the user's behalf (the user can revise).
+5. Cross-link aggressively — every concept mentioned in the source page should link to its concept page (creating a stub if needed).
 6. If the source contradicts something already in the wiki, do not silently overwrite. Add a "## Contradictions" section to the relevant concept page noting the disagreement and the sources of each side.
-7. Commit with a message like `agent-edit: integrate <paper title>`.
+7. Update `wiki/index.md` with any new pages created, and append a summary entry to `wiki/log.md`.
+8. Commit with a message like `agent-edit: integrate <paper title>`.
 
 ## When the user asks a question
 
