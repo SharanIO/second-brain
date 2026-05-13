@@ -1,7 +1,7 @@
 ---
-type: concept
+type: project
 tags: [career, resume, meta, prompt]
-last-updated: 2026-04-30
+last-updated: 2026-05-13
 ---
 
 # Resume — Meta Internal AI Prompt
