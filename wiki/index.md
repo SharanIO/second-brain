@@ -33,7 +33,7 @@ _(none yet — populated as papers, people, tools, orgs are ingested)_
 
 ## Domains
 
-_(none yet — add overview pages as domains become active)_
+- [[nlp]] — NLP domain map: 15 concepts, historical arc, dependency graph, gaps
 
 ## Projects
 
