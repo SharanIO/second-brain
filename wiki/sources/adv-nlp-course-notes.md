@@ -53,7 +53,7 @@ The notes are genuinely useful as an implementation-oriented survey. The main we
 - Heavy OCR noise in later sections (repeated "Virnasked" artifacts from page 119's table cell extraction).
 - Citation practice is inconsistent — Vaswani et al. 2017 and "Ran Mooney 2014" (on the seq-to-seq bottleneck) are named but not fully cited.
 - The RLHF section is abbreviated; the PPO details are cut off.
-- Misclassified as `raw/papers/` — these are course notes and would fit better in `raw/transcripts/` or a dedicated `50-courses/adv-nlp/` folder.
+- The structured 12-chapter version lives in `wiki/courses/adv-nlp/`; this source page covers the original OCR'd notes.
 
 ## Concept pages created
 
