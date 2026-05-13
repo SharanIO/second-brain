@@ -1,0 +1,20 @@
+filters:
+  folder: wiki/sources
+
+views:
+  - type: table
+    name: Sources
+    columns:
+      - property: file.name
+        name: Source
+      - property: type
+        name: Type
+      - property: status
+        name: Status
+      - property: source
+        name: Raw File
+      - property: last-updated
+        name: Updated
+    order:
+      - property: last-updated
+        direction: desc

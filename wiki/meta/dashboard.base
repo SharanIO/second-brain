@@ -1,0 +1,20 @@
+filters:
+  folder: wiki
+
+views:
+  - type: table
+    name: All Wiki Notes
+    columns:
+      - property: file.name
+        name: Note
+      - property: type
+        name: Type
+      - property: status
+        name: Status
+      - property: last-updated
+        name: Updated
+      - property: tags
+        name: Tags
+    order:
+      - property: last-updated
+        direction: desc

@@ -1,0 +1,18 @@
+filters:
+  folder: wiki/entities
+
+views:
+  - type: table
+    name: Entities
+    columns:
+      - property: file.name
+        name: Entity
+      - property: type
+        name: Type
+      - property: tags
+        name: Tags
+      - property: last-updated
+        name: Updated
+    order:
+      - property: file.name
+        direction: asc
