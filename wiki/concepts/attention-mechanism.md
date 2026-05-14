@@ -42,6 +42,31 @@ Each token attends to all other tokens in the *same* sequence. This lets the mod
 
 **KV-cache**: at inference time, store previously computed $K$ and $V$ vectors so they don't need to be recomputed at each decoding step.
 
+## Multi-head attention
+
+Instead of a single attention operation over $d_{\text{model}}$-dimensional vectors, project Q, K, V into $h$ lower-dimensional subspaces and run attention in parallel. Each head has its own learned projections:
+
+$$\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W^O$$
+$$\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, KW_i^V)$$
+
+In the original Transformer: $h = 8$ heads, $d_k = d_v = d_{\text{model}}/h = 64$. Total compute equals single-head attention at $d = 512$ — but each head independently specializes in different aspects of the sequence (syntax, coreference, phrase structure). Ablations show single-head is 0.9 BLEU worse; too many heads (32) also degrades quality.
+
+### Three application contexts in the Transformer
+
+1. **Encoder self-attention**: Q, K, V all from the encoder's previous layer. Bidirectional — every position attends to every other.
+2. **Decoder masked self-attention**: causal mask sets future positions to $-\infty$ before softmax, so position $i$ only attends to positions $\leq i$. Required for autoregressive generation.
+3. **Encoder-decoder cross-attention**: Q from the decoder's previous layer; K, V from the encoder's final output. The only path the decoder uses to "read" the source.
+
+### Efficiency vs. recurrence
+
+| Layer type | Complexity per layer | Sequential ops | Max path length |
+|---|---|---|---|
+| Self-attention | $O(n^2 \cdot d)$ | $O(1)$ | $O(1)$ |
+| Recurrent | $O(n \cdot d^2)$ | $O(n)$ | $O(n)$ |
+| Convolutional | $O(k \cdot n \cdot d^2)$ | $O(1)$ | $O(\log_k n)$ |
+
+Self-attention is faster than recurrence when $n < d$ (typical in NLP). The $O(1)$ path length is the decisive advantage — any two positions interact in one step regardless of distance.
+
 ## Masking
 
 - **Causal mask** (decoder): prevents each position from attending to future tokens. Required for autoregressive LMs to prevent "cheating."
