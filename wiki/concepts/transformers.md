@@ -58,6 +58,33 @@ Self-attention is permutation-invariant — it has no built-in notion of order. 
 - Best for: seq-to-seq tasks — translation, summarization, Q&A
 - Examples: T5, BART, mT5
 
+## Original Transformer hyperparameters (Vaswani et al. 2017)
+
+The base model configuration that established the defaults still used by most modern architectures:
+
+| Parameter | Base | Big |
+|---|---|---|
+| Layers $N$ | 6 | 6 |
+| $d_{\text{model}}$ | 512 | 1024 |
+| $d_{\text{ff}}$ | 2048 | 4096 |
+| Heads $h$ | 8 | 16 |
+| $d_k = d_v$ | 64 | 64 |
+| Dropout | 0.1 | 0.3 |
+| Parameters | 65M | 213M |
+| Training steps | 100K | 300K |
+
+**Results**: Transformer (big) achieved 28.4 BLEU on WMT 2014 EN-DE and 41.0 BLEU on EN-FR — beating all prior single models and ensembles at a fraction of the compute cost.
+
+### Warmup learning rate schedule
+
+$$\text{lr} = d_{\text{model}}^{-0.5} \cdot \min(\text{step}^{-0.5},\ \text{step} \cdot \text{warmup}^{-1.5})$$
+
+Linear warmup for `warmup_steps = 4000`, then inverse square root decay. The warmup prevents early instability when gradient estimates are unreliable. This schedule has become the default for transformer pretraining.
+
+### Weight tying
+
+The source embedding matrix, target embedding matrix, and pre-softmax projection share the same weights. Embedding weights are scaled by $\sqrt{d_{\text{model}}}$. This reduces parameters and enforces consistency between how tokens are encoded and decoded.
+
 ## Tensor shape walkthrough (3-token sequence, $d=512$, 8 heads)
 
 | Step | Shape | What happened |
