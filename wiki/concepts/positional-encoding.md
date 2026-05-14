@@ -117,7 +117,7 @@ The position embeddings (for learned variants) are parameters like any others, b
 ## Sources
 
 - [[adv-nlp-course-notes]]
-- Vaswani et al. (2017) — "Attention Is All You Need" — [[attention-is-all-you-need]]
+- [[attention-is-all-you-need]] — Vaswani et al. (2017) — original sinusoidal PE; ablation (Table 3 row E) showing learned PE produces nearly identical results
 - Su et al. (2021) — "RoFormer: Enhanced Transformer with Rotary Position Embedding"
 - Press et al. (2021) — "Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation"
 
