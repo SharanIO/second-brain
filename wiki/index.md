@@ -38,6 +38,7 @@ _(none yet — populated as papers, people, tools, orgs are ingested)_
 ## Projects
 
 - `projects/resume/` — resume rebuild (`resume-meta-ai-prompt`, `resume-writing-rules`, PDF, LaTeX source)
+- [[robotics-learning-roadmap]] — curated 2026 robotics career/learning roadmap (VLA models, RL, tactile sensing, embedded)
 
 ## Courses
 
