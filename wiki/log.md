@@ -15,6 +15,18 @@ Pages created: N | Pages updated: N | Source: <filename>
 
 ---
 
+## 2026-05-13 — Integrate: Attention Is All You Need
+Pages created: 1 | Pages updated: 4 | Source: raw/papers/attention-is-all-you-need/
+
+- Created `wiki/sources/attention-is-all-you-need.md` — full source page: architecture, exact hyperparameters, warmup LR schedule, weight tying, ablation results, BLEU scores, critique
+- Updated `wiki/concepts/attention-mechanism.md` — added multi-head attention with exact numbers (h=8, dk=64), three application contexts (encoder SA, decoder masked SA, cross-attention), efficiency comparison table
+- Updated `wiki/concepts/transformers.md` — added base/big model hyperparameter table, warmup LR schedule formula, weight tying, BLEU results
+- Updated `wiki/concepts/positional-encoding.md` — updated source citation to link to source page with ablation note
+- Moved `attention-is-all-you-need.pdf` from `raw/incoming/` → `raw/papers/attention-is-all-you-need/`
+- Updated `wiki/index.md` with new source entry
+
+---
+
 ## 2026-05-13 02:10 — Content expansion
 Pages created: 2 | Pages updated: 6 | Source: session
 
