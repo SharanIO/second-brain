@@ -80,6 +80,7 @@ Attention acts as a learned filter — it removes irrelevant information and foc
 ## Sources
 
 - [[adv-nlp-course-notes]]
+- [[attention-is-all-you-need]] (Vaswani et al. 2017)
 
 ## See also
 
