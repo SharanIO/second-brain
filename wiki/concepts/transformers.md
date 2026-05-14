@@ -28,7 +28,7 @@ Instead of a single attention function, use $h$ parallel attention heads, each w
 
 $$\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W^O$$
 
-The number of heads is a model-level hyperparameter, constant across all layers.
+In the original Transformer: $h = 8$, $d_k = d_v = 64$, $d_{\text{model}} = 512$. Full treatment in [[attention-mechanism]].
 
 ## Positional encoding
 
