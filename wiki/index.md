@@ -47,6 +47,7 @@ _(none yet — populated as papers, people, tools, orgs are ingested)_
 ## Sources
 
 - [[adv-nlp-course-notes]] — Advanced NLP handwritten lecture notes, ~130 pages
+- [[attention-is-all-you-need]] — Vaswani et al. (2017), the original Transformer paper
 
 ## Questions
 
