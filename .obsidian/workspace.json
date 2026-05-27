@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/concepts/attention-mechanism.md",
+                "file": "CLAUDE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "attention-mechanism"
+              "title": "CLAUDE"
             }
           }
         ]
@@ -196,8 +196,12 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "d287c4d909ba5f23",
+  "active": "68738ccc5d270d6f",
   "lastOpenFiles": [
+    "wiki/log.md",
+    "wiki/index.md",
+    "wiki/hot.md",
+    "wiki/concepts/attention-mechanism.md",
     "raw/papers/NLP/NLP.pdf",
     "wiki/courses/adv-nlp/08-attention-mechanism.md",
     "wiki/meta/sources.base",
@@ -211,7 +215,6 @@
     "wiki/concepts/attention-mechanism.md.tmp.31920.997d724e27a0",
     "raw/papers/attention-is-all-you-need/attention-is-all-you-need.md",
     "raw/incoming/Where to Touch How to Contact Hierarchical RL MPC Framework for Geometry Aware Long Horizon Dexterous Manipulation.pdf",
-    "raw/incoming/SimToolReal An Object-Centric Policy for Zero-Shot Dexterous Tool Manipulation.pdf",
     "raw/papers/NLP/NLP.md",
     "wiki/domains/nlp.md",
     "wiki/concepts/n-gram-models.md",
@@ -228,9 +231,6 @@
     "wiki/projects/resume/resume-meta-ai-prompt.md",
     "WIKI.md",
     "wiki/overview.md",
-    "wiki/log.md",
-    "wiki/index.md",
-    "wiki/hot.md",
     "_templates/paper.md",
     "_templates/daily.md",
     "_templates/concept.md",
