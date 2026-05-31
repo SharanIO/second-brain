@@ -11,14 +11,12 @@
             "id": "68738ccc5d270d6f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "CLAUDE.md",
-                "mode": "source",
-                "source": false
+                "file": "wiki/projects/resume/Sai_Sharan_Thirunagari_Resume.pdf"
               },
-              "icon": "lucide-file",
-              "title": "CLAUDE"
+              "icon": "lucide-file-text",
+              "title": "Sai_Sharan_Thirunagari_Resume"
             }
           }
         ]
@@ -198,23 +196,25 @@
   },
   "active": "68738ccc5d270d6f",
   "lastOpenFiles": [
+    "raw/documents/h1b/UNIFY Mail - [URGENT] H-1B Petition_ Required Documents.pdf",
+    "raw/documents/h1b/H-1B Required Documents_Employee.pdf",
+    "raw/incoming/H-1B Required Documents_Employee.pdf",
+    "raw/incoming/UNIFY Mail - [URGENT] H-1B Petition_ Required Documents.pdf",
+    "wiki/projects/resume/resume.tex.tmp.37512.aaae74729d01",
+    "wiki/projects/resume/resume.tex.tmp.37512.eceddf1176ec",
+    "wiki/projects/resume/resume.tex",
+    "raw/documents/h1b/Brightmind.pdf",
+    "raw/documents/h1b/Sai Sharan Thirunagari_Offer_Letter.pdf",
+    "raw/documents/h1b/Employment_SEVP Portal.pdf",
+    "raw/documents/h1b/Volunteer - Sharan (1).pdf",
+    "CLAUDE.md",
     "wiki/log.md",
     "wiki/index.md",
     "wiki/hot.md",
     "wiki/concepts/attention-mechanism.md",
-    "raw/papers/NLP/NLP.pdf",
     "wiki/courses/adv-nlp/08-attention-mechanism.md",
-    "wiki/meta/sources.base",
-    "wiki/index.md.tmp.31920.76a3be139f69",
-    "raw/papers/attention-is-all-you-need/attention-is-all-you-need.pdf",
-    "wiki/meta/entities.base",
-    "wiki/meta/dashboard.base",
-    "wiki/concepts/positional-encoding.md.tmp.31920.3af87730212d",
     "wiki/sources/attention-is-all-you-need.md",
-    "wiki/concepts/transformers.md.tmp.31920.6fa55df545c9",
-    "wiki/concepts/attention-mechanism.md.tmp.31920.997d724e27a0",
     "raw/papers/attention-is-all-you-need/attention-is-all-you-need.md",
-    "raw/incoming/Where to Touch How to Contact Hierarchical RL MPC Framework for Geometry Aware Long Horizon Dexterous Manipulation.pdf",
     "raw/papers/NLP/NLP.md",
     "wiki/domains/nlp.md",
     "wiki/concepts/n-gram-models.md",
@@ -234,8 +234,6 @@
     "_templates/paper.md",
     "_templates/daily.md",
     "_templates/concept.md",
-    "wiki/sources/adv-nlp-course-notes.md",
-    "wiki/courses/adv-nlp/12-finetuning-peft-alignment.md",
     "Untitled.canvas",
     "raw/papers/NLP/_page_128_Picture_0.jpeg",
     "raw/papers/NLP/_page_127_Picture_0.jpeg",
